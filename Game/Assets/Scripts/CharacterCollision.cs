@@ -20,7 +20,9 @@ public class CharacterCollision : MonoBehaviour {
 	{
 		if (other.CompareTag ("enemy")) 
 		{
+			print ("colliding enemy");
 			levelManager.DecreaseLives();
+			Destroy (other.gameObject);
 		}
 	}
 }

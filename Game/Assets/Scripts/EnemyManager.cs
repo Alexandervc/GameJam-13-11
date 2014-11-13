@@ -3,7 +3,15 @@ using System.Collections;
 
 public class EnemyManager : MonoBehaviour {
 
+<<<<<<< HEAD
 	public CharacterController enemy;
+=======
+	public enum Direction
+	{
+		left,
+		right
+	}
+>>>>>>> origin/master
 	public string type;
 	private int range;
 	private float speed;
@@ -50,26 +58,36 @@ public class EnemyManager : MonoBehaviour {
 		if(position <= 0)
 		{
 			position += speed;
+<<<<<<< HEAD
 			enemy.Move(new Vector3(speed, 0, 0));
 			direction = DirectionEnum.right;
+=======
+			//enemy.Move(new Vector3(speed, 0, 0));
+			direction = Direction.right;
+>>>>>>> origin/master
 		}
 		else if (position >= range)
 		{
 			position -= speed;
+<<<<<<< HEAD
 			enemy.Move(new Vector3(-speed, 0, 0));
 			direction = DirectionEnum.left;
+=======
+			//enemy.Move(new Vector3(-speed, 0, 0));
+			direction = Direction.left;
+>>>>>>> origin/master
 		}
 		else if (position < range)
 		{
 			if(direction == DirectionEnum.right)
 			{
 				position += speed;
-				enemy.Move(new Vector3(speed, 0, 0));
+				//enemy.Move(new Vector3(speed, 0, 0));
 			}
 			else if(direction == DirectionEnum.left)
 			{
 				position -= speed;
-				enemy.Move(new Vector3(-speed, 0, 0));
+				//enemy.Move(new Vector3(-speed, 0, 0));
 			}
 		}
 	}

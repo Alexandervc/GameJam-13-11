@@ -4,14 +4,14 @@ using System.Collections;
 public class CameraMovement : MonoBehaviour {
     public Transform playerTransform;
 
-	private int middleWidth;
+	private float middleWidth;
 	private float camY = 5f;
 	private float camZ = -10f;
 
 	// Use this for initialization
 	void Start () 
 	{
-		middleWidth = 5;
+		middleWidth = 8.7f;
 	}
 	
 	// Update is called once per frame
