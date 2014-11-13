@@ -4,7 +4,7 @@ using System.Collections;
 public class CharacterMovement : MonoBehaviour {
     CharacterController character;
 
-	private Vector3 gravityDirection = Vector3.zero;
+	private Vector3 moveDirection = Vector3.down;
 
 	private float speed;
 	private float jumpHeight;
@@ -17,9 +17,9 @@ public class CharacterMovement : MonoBehaviour {
 	{
 		character = GetComponent<CharacterController> ();
 
-		speed = 10;
-		jumpHeight = 5;
-		gravity = 3;
+		speed = 5;
+		jumpHeight = 10;
+		gravity = 15;
 
 		jump = false;
 	}
@@ -29,18 +29,17 @@ public class CharacterMovement : MonoBehaviour {
 	{
 		if(character.isGrounded)
 		{
-			Debug.Log(character.isGrounded);
-
 			//Jump movement
 			if(jump)
 			{
-				gravityDirection.y = jumpHeight;
+				moveDirection.y = jumpHeight;
 				jump = false;
 			}
 		}
 
 		//Gravity on character
-		gravityDirection.y -= gravity * Time.deltaTime;
+		moveDirection.y -= gravity * Time.deltaTime;
+		character.Move(moveDirection * Time.deltaTime);
 	}
 
 	//Moves the character to the right
