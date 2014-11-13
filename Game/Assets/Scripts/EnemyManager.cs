@@ -5,25 +5,28 @@ public class EnemyManager : MonoBehaviour {
 
 	public enum Direction
 	{
-
+		left,
+		right
 	}
 
-	public string name;
+	public Transform enemyTransform;
+	public string type;
 	private int range;
-	private int speed;
+	private float speed;
 	private float position;
-	private 
+	private Direction direction;
 
 	// Use this for initialization
 	void Start ()
 	{
 		//walkingrange of enemy
-		range = 10;
+		range = 3;
 		position = 0;
+		direction = Direction.right;
 
-		if (name.Equals("earth"))
+		if (type.Equals("earth"))
 		{
-			speed = 1;
+			speed = 0.1f;
 		}
 	}
 	
@@ -35,9 +38,32 @@ public class EnemyManager : MonoBehaviour {
 
 	private void Move ()
 	{
-		if(position <= range)
+		if(position == 0)
 		{
-
+			position += speed;
+			this.transform.position = new Vector3(this.transform.position.x + speed, this.transform.position.y, 0);
+			direction = Direction.right;
+			return;
+		}
+		else if (position == range)
+		{
+			position -= speed;
+			this.transform.position = new Vector3(this.transform.position.x - speed, this.transform.position.y, 0);
+			direction = Direction.left;
+			return;
+		}
+		else if (position < range)
+		{
+			if(direction == Direction.right)
+			{
+				position += speed;
+				this.transform.position = new Vector3(this.transform.position.x + speed, this.transform.position.y, 0);
+			}
+			else if(direction == Direction.left)
+			{
+				position -= speed;
+				this.transform.position = new Vector3(this.transform.position.x - speed, this.transform.position.y, 0);
+			}
 		}
 	}
 }
