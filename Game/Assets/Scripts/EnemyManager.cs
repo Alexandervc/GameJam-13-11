@@ -38,19 +38,21 @@ public class EnemyManager : MonoBehaviour {
 
 	private void Move ()
 	{
+		position = RoundFloat(position);
+		print (position);
+
 		if(position == 0)
 		{
 			position += speed;
 			this.transform.position = new Vector3(this.transform.position.x + speed, this.transform.position.y, 0);
 			direction = Direction.right;
-			return;
 		}
 		else if (position == range)
 		{
+			print ("1");
 			position -= speed;
 			this.transform.position = new Vector3(this.transform.position.x - speed, this.transform.position.y, 0);
 			direction = Direction.left;
-			return;
 		}
 		else if (position < range)
 		{
@@ -61,9 +63,24 @@ public class EnemyManager : MonoBehaviour {
 			}
 			else if(direction == Direction.left)
 			{
+				print ("2");
 				position -= speed;
 				this.transform.position = new Vector3(this.transform.position.x - speed, this.transform.position.y, 0);
 			}
 		}
+	}
+
+	private float RoundFloat(float position)
+	{
+		print ("" + position);
+		float count = position;
+		print ("" + count);
+		count = count * 10;
+		print ("" + count);
+		int round = Mathf.RoundToInt(count);
+		print ("" + round);
+		count = round / 10;
+		print ("" + count);
+		return count;
 	}
 }
