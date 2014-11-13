@@ -5,6 +5,9 @@ public class CharacterCollision : MonoBehaviour {
 	public LevelManager levelManager;
 
 	private Element playerElement;
+	private int livesBadAttack = 0;
+	private int livesNormalAttack = 1;
+	private int livesGreatAttack = 2;
 
 	// Use this for initialization
 	void Start () 
@@ -23,41 +26,54 @@ public class CharacterCollision : MonoBehaviour {
 		switch(other.tag)
 		{
 			case "enemy": 
-				levelManager.DecreaseLives(1);
+				levelManager.DecreaseLives(livesNormalAttack);
 				break;
 			case "projectile":
-			//Element enemyElement = other.gameObject.GetComponent<Projectile>().GetElement();
-			switch(playerElement)
-			{
-				//Projectile projectileInstantiate(projectilePrefab);
-			case Element.air:
-				//switch(enemyElement)
-				//{
-
-				//}
-				// do normal
-				break;
-			case Element.earth:
-				// earthquake
-				break;
-			case Element.fire:
-				// fireball
-				break;
-			case Element.glass:
-				// do normal
-				break;
-			case Element.normal:
-				// do normal
-				break;
-			case Element.spirit:
-				// take over
-				break;
-			case Element.water:
-				// bubble cage
-				break;
-			}
-					Destroy(other.gameObject);
-					break;
+				Element projectileElement = Element.air;
+				//other.gameObject.GetComponent<Projectile>().GetElement();
+				switch(playerElement)
+				{
+					//Projectile projectileInstantiate(projectilePrefab);
+					case Element.air:
+						this.handleProjCollision (projectileElement, Element.glass, Element.spirit);
+						break;
+					case Element.earth:
+						this.handleProjCollision (projectileElement, Element.spirit, Element.water);
+						break;
+					case Element.fire:
+						this.handleProjCollision (projectileElement, Element.water, Element.glass);
+						break;
+					case Element.glass:
+						this.handleProjCollision (projectileElement, Element.fire, Element.air);
+						break;
+					case Element.normal:
+						levelManager.DecreaseLives (livesNormalAttack);
+						break;
+					case Element.spirit:
+						this.handleProjCollision(projectileElement, Element.air, Element.earth);
+						break;
+					case Element.water:
+						this.handleProjCollision(projectileElement, Element.earth, Element.fire);
+						break;
 				}
+				Destroy(other.gameObject);
+				break;
+		}
+	}
+
+	private void handleProjCollision(Element projectileElement, Element greatElement, Element badElement)
+	{
+		if (projectileElement == greatElement) 
+		{
+			levelManager.DecreaseLives (livesGreatAttack);
+		} 
+		else if (projectileElement == badElement) 
+		{
+			levelManager.DecreaseLives (livesBadAttack);
+		} 
+		else 
+		{
+			levelManager.DecreaseLives(livesNormalAttack);
+		}
 	}
 }
