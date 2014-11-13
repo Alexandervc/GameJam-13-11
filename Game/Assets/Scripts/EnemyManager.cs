@@ -8,8 +8,6 @@ public class EnemyManager : MonoBehaviour {
 		left,
 		right
 	}
-
-	public CharacterController enemy;
 	public string type;
 	private int range;
 	private float speed;
@@ -42,13 +40,13 @@ public class EnemyManager : MonoBehaviour {
 		if(position <= 0)
 		{
 			position += speed;
-			enemy.Move(new Vector3(speed, 0, 0));
+			//enemy.Move(new Vector3(speed, 0, 0));
 			direction = Direction.right;
 		}
 		else if (position >= range)
 		{
 			position -= speed;
-			enemy.Move(new Vector3(-speed, 0, 0));
+			//enemy.Move(new Vector3(-speed, 0, 0));
 			direction = Direction.left;
 		}
 		else if (position < range)
@@ -56,12 +54,12 @@ public class EnemyManager : MonoBehaviour {
 			if(direction == Direction.right)
 			{
 				position += speed;
-				enemy.Move(new Vector3(speed, 0, 0));
+				//enemy.Move(new Vector3(speed, 0, 0));
 			}
 			else if(direction == Direction.left)
 			{
 				position -= speed;
-				enemy.Move(new Vector3(-speed, 0, 0));
+				//enemy.Move(new Vector3(-speed, 0, 0));
 			}
 		}
 	}
