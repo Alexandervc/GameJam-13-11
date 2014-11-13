@@ -11,7 +11,7 @@ public class CharacterMovement : MonoBehaviour {
 	{
 		character = GetComponent<CharacterController> ();
 
-		speed = 5;
+		speed = 10;
 	}
 	
 	// Update is called once per frame

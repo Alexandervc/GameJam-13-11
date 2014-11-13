@@ -2,11 +2,11 @@ using UnityEngine;
 using System.Collections;
 
 public class InputDetection : MonoBehaviour {
-	public CharacterMovement character;
+	CharacterMovement character;
 
 	void Start() 
 	{
-
+		character = GetComponent<CharacterMovement> ();
 	}
 
 	void Update() 
@@ -16,9 +16,7 @@ public class InputDetection : MonoBehaviour {
 		{
 			Touch touch = Input.touches[0];
 
-			Vector3 position = Camera.main.ScreenToWorldPoint(touch.position);
-
-			if(position.x > (Screen.width / 2))
+			if(touch.position.x > (Screen.width / 2))
 			{
 				character.MoveRight();
 			}
