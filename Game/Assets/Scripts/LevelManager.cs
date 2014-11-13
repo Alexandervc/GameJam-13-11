@@ -18,13 +18,29 @@ public class LevelManager : MonoBehaviour {
 		
 	}
 
-	public void DecreaseLives()
+	public void DecreaseLives(int numberOfLives)
 	{
-		lives--;
+		lives -= numberOfLives;
 		livesText.text = lives + "x";
-		if (lives < 0) 
+		if (lives == 0) 
 		{
-			print ("game over");
+			GameOver();
 		}
 	}
+
+	public void GameOver()
+	{
+		Application.LoadLevel (0);
+	}
+}
+
+public enum Element
+{
+	earth,
+	water,
+	fire,
+	glass,
+	air,
+	spirit,
+	normal
 }
