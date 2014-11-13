@@ -16,11 +16,11 @@ public class InputDetection : MonoBehaviour {
 		{
 			Touch touch = Input.touches[0];
 
-			if(touch.position.x > (Screen.width / 2))
+			if(touch.position.x > (Screen.width - (Screen.width / 4)))
 			{
 				character.MoveRight();
 			}
-			else
+			else if(touch.position.x < (Screen.width / 4))
 			{
 				character.MoveLeft();
 			}
@@ -30,7 +30,7 @@ public class InputDetection : MonoBehaviour {
 		//Key Input
 		if(Input.GetKeyDown(KeyCode.W))
 		{
-
+			character.Jump();
 		}
 		
 		if(Input.GetKeyDown(KeyCode.A))
