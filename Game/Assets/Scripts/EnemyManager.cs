@@ -3,28 +3,21 @@ using System.Collections;
 
 public class EnemyManager : MonoBehaviour {
 
-<<<<<<< HEAD
-	public CharacterController enemy;
-=======
-	public enum Direction
-	{
-		left,
-		right
-	}
->>>>>>> origin/master
+	private Transform enemy;
 	public string type;
 	private int range;
 	private float speed;
 	private float position;
 	private DirectionEnum direction;
-
-	public ArrayList projectiles;
+	
 	private int count;
+	public GameObject projObject;
+	private GameObject projectile;
 
 	// Use this for initialization
 	void Start ()
 	{
-		projectiles = new ArrayList();
+		enemy = this.transform;
 		count = 0;
 
 		//walkingrange of enemy
@@ -41,10 +34,17 @@ public class EnemyManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		if (count == 100)
+		if (projectile != null)
 		{
-			Projectile p = new Projectile(direction, 0.1f);
-			projectiles.Add(p);
+			while (count < 50)
+			{
+				projectile.transform.position = new Vector3 (projectile.transform.position.x + speed, projectile.transform.position.y, 0);
+			}
+		}
+
+		if (count == 50)
+		{
+			projectile = (GameObject)Instantiate(projObject, GetProjectilePosition(), Quaternion.identity);
 			count = 0;
 		}
 
@@ -54,42 +54,45 @@ public class EnemyManager : MonoBehaviour {
 
 	private void SetMovement()
 	{
-
 		if(position <= 0)
 		{
 			position += speed;
-<<<<<<< HEAD
-			enemy.Move(new Vector3(speed, 0, 0));
 			direction = DirectionEnum.right;
-=======
-			//enemy.Move(new Vector3(speed, 0, 0));
-			direction = Direction.right;
->>>>>>> origin/master
+			enemy.position = new Vector3(enemy.position.x + speed, enemy.position.y, 0);
 		}
 		else if (position >= range)
 		{
 			position -= speed;
-<<<<<<< HEAD
-			enemy.Move(new Vector3(-speed, 0, 0));
 			direction = DirectionEnum.left;
-=======
-			//enemy.Move(new Vector3(-speed, 0, 0));
-			direction = Direction.left;
->>>>>>> origin/master
+			enemy.position = new Vector3(enemy.position.x - speed, enemy.position.y, 0);
 		}
 		else if (position < range)
 		{
 			if(direction == DirectionEnum.right)
 			{
 				position += speed;
-				//enemy.Move(new Vector3(speed, 0, 0));
+				enemy.position = new Vector3(enemy.position.x + speed, enemy.position.y, 0);
 			}
 			else if(direction == DirectionEnum.left)
 			{
 				position -= speed;
-				//enemy.Move(new Vector3(-speed, 0, 0));
+				enemy.position = new Vector3(enemy.position.x - speed, enemy.position.y, 0);
 			}
 		}
+	}
+
+	private Vector3 GetProjectilePosition()
+	{
+		if (direction == DirectionEnum.left)
+		{
+			return new Vector3(enemy.position.x - 1.15f, enemy.position.y, 0);
+		}
+		else if (direction == DirectionEnum.left)
+		{
+			return new Vector3(enemy.position.x + 1.15f, enemy.position.y, 0);
+		}
+
+		return new Vector3(0,0,0);
 	}
 }
 
