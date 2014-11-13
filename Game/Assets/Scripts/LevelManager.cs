@@ -2,12 +2,14 @@
 using System.Collections;
 
 public class LevelManager : MonoBehaviour {
+	public UILabel livesText;
+
 	private int lives = 3;
 
 	// Use this for initialization
 	void Start () 
 	{
-	
+		livesText.Text = lives + "x";
 	}
 	
 	// Update is called once per frame
@@ -19,5 +21,10 @@ public class LevelManager : MonoBehaviour {
 	public void DecreaseLives()
 	{
 		lives--;
+		livesText.Text = lives + "x";
+		if (lives < 0) 
+		{
+			print ("game over");
+		}
 	}
 }
