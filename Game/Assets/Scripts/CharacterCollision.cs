@@ -23,7 +23,7 @@ public class CharacterCollision : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) 
 	{
-		switch(other.tag)
+		/*switch(other.tag)
 		{
 			case "enemy": 
 				levelManager.DecreaseLives(livesNormalAttack);
@@ -58,6 +58,12 @@ public class CharacterCollision : MonoBehaviour {
 				}
 				Destroy(other.gameObject);
 				break;
+<<<<<<< HEAD
+			}
+					Destroy(other.gameObject);
+					break;
+				}*/
+=======
 		}
 	}
 
@@ -75,5 +81,6 @@ public class CharacterCollision : MonoBehaviour {
 		{
 			levelManager.DecreaseLives(livesNormalAttack);
 		}
+>>>>>>> origin/master
 	}
 }

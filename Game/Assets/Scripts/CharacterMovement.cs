@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CharacterMovement : MonoBehaviour {
     CharacterController character;
+	public Animator anim;
 
 	private Vector3 moveDirection = Vector3.down;
 
@@ -11,6 +12,8 @@ public class CharacterMovement : MonoBehaviour {
 	private float gravity;
 
 	private bool jump;
+
+	private int jumpHash = Animator.StringToHash("Jump");
 
 	// Use this for initialization
 	void Start () 
@@ -32,6 +35,7 @@ public class CharacterMovement : MonoBehaviour {
 			//Jump movement
 			if(jump)
 			{
+				anim.SetTrigger(jumpHash);
 				moveDirection.y = jumpHeight;
 				jump = false;
 			}
