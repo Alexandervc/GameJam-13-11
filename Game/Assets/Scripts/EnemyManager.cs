@@ -43,13 +43,14 @@ public class EnemyManager : MonoBehaviour {
 
 		if(position == 0)
 		{
+			print ("omdraaien begin");
 			position += speed;
 			this.transform.position = new Vector3(this.transform.position.x + speed, this.transform.position.y, 0);
 			direction = Direction.right;
 		}
 		else if (position == range)
 		{
-			print ("1");
+			print ("omdraaien eind");
 			position -= speed;
 			this.transform.position = new Vector3(this.transform.position.x - speed, this.transform.position.y, 0);
 			direction = Direction.left;
@@ -58,12 +59,13 @@ public class EnemyManager : MonoBehaviour {
 		{
 			if(direction == Direction.right)
 			{
+				print ("loop rechts");
 				position += speed;
 				this.transform.position = new Vector3(this.transform.position.x + speed, this.transform.position.y, 0);
 			}
 			else if(direction == Direction.left)
 			{
-				print ("2");
+				print ("loop links");
 				position -= speed;
 				this.transform.position = new Vector3(this.transform.position.x - speed, this.transform.position.y, 0);
 			}
@@ -72,15 +74,14 @@ public class EnemyManager : MonoBehaviour {
 
 	private float RoundFloat(float position)
 	{
-		print ("" + position);
+		print ("input; " + position);
 		float count = position;
-		print ("" + count);
 		count = count * 10;
-		print ("" + count);
+		print ("x10; " + count);
 		int round = Mathf.RoundToInt(count);
-		print ("" + round);
+		print ("to int; " + round);
 		count = round / 10;
-		print ("" + count);
+		print ("/10" + count);
 		return count;
 	}
 }
