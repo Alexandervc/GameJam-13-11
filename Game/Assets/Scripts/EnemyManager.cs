@@ -5,7 +5,7 @@ public class EnemyManager : MonoBehaviour {
 
 	private Transform enemy;
 	private string type;
-	public Element enemy;
+	public Element element;
 	private int range;
 	private float speed;
 	private float position;

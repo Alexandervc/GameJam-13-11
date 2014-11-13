@@ -26,7 +26,7 @@ public class CharacterCollision : MonoBehaviour {
 				levelManager.DecreaseLives(1);
 				break;
 			case "projectile":
-			Elements enemyElement = other.gameObject.GetComponent<Projectile>().GetElement();
+			Element enemyElement = other.gameObject.GetComponent<Projectile>().GetElement();
 			switch(playerElement)
 			{
 				//Projectile projectileInstantiate(projectilePrefab);
@@ -59,6 +59,5 @@ public class CharacterCollision : MonoBehaviour {
 					Destroy(other.gameObject);
 					break;
 				}
-		}
 	}
 }
