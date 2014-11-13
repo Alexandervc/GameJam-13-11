@@ -26,7 +26,6 @@ public class InputDetection : MonoBehaviour {
 			}
 		}
 
-
 		//Key Input
 		if(Input.GetKey(KeyCode.W))
 		{
