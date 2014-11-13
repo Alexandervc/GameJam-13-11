@@ -1,18 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CharacterAttack.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CharacterCollision.cs">
     <Files>
+      <File FileName="Assets\Scripts\EnemyManager.cs" Line="111" Column="1" />
       <File FileName="Assets\Scripts\LevelManager.cs" Line="37" Column="20" />
-      <File FileName="Assets\Scripts\EnemyManager.cs" Line="67" Column="1" />
       <File FileName="Assets\Scripts\CameraMovement.cs" Line="6" Column="1" />
-      <File FileName="Assets\Scripts\CharacterCollision.cs" Line="65" Column="1" />
+      <File FileName="Assets\Scripts\CharacterCollision.cs" Line="29" Column="1" />
       <File FileName="Assets\Scripts\CharacterAttack.cs" Line="55" Column="5" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyManager.cs">
-    <Files>
-      <File FileName="Assets\Scripts\EnemyManager.cs" Line="84" Column="3" />
->>>>>>> origin/master
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
