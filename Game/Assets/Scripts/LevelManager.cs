@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		livesText.Text = lives + "x";
+		livesText.text = lives + "x";
 	}
 	
 	// Update is called once per frame
@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour {
 	public void DecreaseLives()
 	{
 		lives--;
-		livesText.Text = lives + "x";
+		livesText.text = lives + "x";
 		if (lives < 0) 
 		{
 			print ("game over");
