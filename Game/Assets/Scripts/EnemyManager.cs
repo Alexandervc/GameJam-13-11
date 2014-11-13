@@ -4,7 +4,8 @@ using System.Collections;
 public class EnemyManager : MonoBehaviour {
 
 	private Transform enemy;
-	public string type;
+	private string type;
+	public Element enemy;
 	private int range;
 	private float speed;
 	private float position;
@@ -28,6 +29,7 @@ public class EnemyManager : MonoBehaviour {
 		if (type.Equals("earth"))
 		{
 			speed = 0.05f;
+			element = Element.earth;
 		}
 	}
 	
@@ -93,6 +95,11 @@ public class EnemyManager : MonoBehaviour {
 		}
 
 		return new Vector3(0,0,0);
+	}
+
+	public Element GetElement()
+	{
+		return this.element;
 	}
 }
 
