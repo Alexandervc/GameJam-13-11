@@ -2,11 +2,11 @@ using UnityEngine;
 using System.Collections;
 
 public class InputDetection : MonoBehaviour {
-	CharacterMovement character;
+	public CharacterMovement character;
 
 	void Start() 
 	{
-		character = GetComponent<CharacterMovement> ();
+
 	}
 
 	void Update() 
