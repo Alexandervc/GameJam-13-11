@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour {
 		right
 	}
 
-	public Transform enemyTransform;
+	public CharacterController enemy;
 	public string type;
 	private int range;
 	private float speed;
@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour {
 	void Start ()
 	{
 		//walkingrange of enemy
-		range = 3;
+		range = 5;
 		position = 0;
 		direction = Direction.right;
 
@@ -33,39 +33,35 @@ public class EnemyManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		Move ();
+		SetMovement();
 	}
 
-	private void Move ()
+	private void SetMovement()
 	{
 
 		if(position <= 0)
 		{
-			print ("omdraaien begin");
 			position += speed;
-			this.transform.position = new Vector3(this.transform.position.x + speed, this.transform.position.y, 0);
+			enemy.Move(new Vector3(speed, 0, 0));
 			direction = Direction.right;
 		}
 		else if (position >= range)
 		{
-			print ("omdraaien eind");
 			position -= speed;
-			this.transform.position = new Vector3(this.transform.position.x - speed, this.transform.position.y, 0);
+			enemy.Move(new Vector3(-speed, 0, 0));
 			direction = Direction.left;
 		}
 		else if (position < range)
 		{
 			if(direction == Direction.right)
 			{
-				print ("loop rechts");
 				position += speed;
-				this.transform.position = new Vector3(this.transform.position.x + speed, this.transform.position.y, 0);
+				enemy.Move(new Vector3(speed, 0, 0));
 			}
 			else if(direction == Direction.left)
 			{
-				print ("loop links");
 				position -= speed;
-				this.transform.position = new Vector3(this.transform.position.x - speed, this.transform.position.y, 0);
+				enemy.Move(new Vector3(-speed, 0, 0));
 			}
 		}
 	}

@@ -11,7 +11,7 @@ public class CameraMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		middleWidth = Camera.main.ScreenToWorldPoint(Screen.width / 2);
+		middleWidth = 5;
 	}
 	
 	// Update is called once per frame
