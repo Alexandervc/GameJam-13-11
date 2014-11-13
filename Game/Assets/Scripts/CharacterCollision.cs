@@ -4,10 +4,15 @@ using System.Collections;
 public class CharacterCollision : MonoBehaviour {
 	public LevelManager levelManager;
 
+	private Element playerElement;
+	private int livesBadAttack = 0;
+	private int livesNormalAttack = 1;
+	private int livesGreatAttack = 2;
+
 	// Use this for initialization
 	void Start () 
 	{
-	
+		playerElement = GetComponent<CharacterAttack> ().GetElement ();
 	}
 	
 	// Update is called once per frame
@@ -18,11 +23,57 @@ public class CharacterCollision : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) 
 	{
-		if (other.CompareTag ("enemy")) 
+		switch(other.tag)
 		{
-			print ("colliding enemy");
-			levelManager.DecreaseLives();
-			Destroy (other.gameObject);
+			case "enemy": 
+				levelManager.DecreaseLives(livesNormalAttack);
+				break;
+			case "projectile":
+				Element projectileElement = Element.air;
+				//other.gameObject.GetComponent<Projectile>().GetElement();
+				switch(playerElement)
+				{
+					//Projectile projectileInstantiate(projectilePrefab);
+					case Element.air:
+						this.handleProjCollision (projectileElement, Element.glass, Element.spirit);
+						break;
+					case Element.earth:
+						this.handleProjCollision (projectileElement, Element.spirit, Element.water);
+						break;
+					case Element.fire:
+						this.handleProjCollision (projectileElement, Element.water, Element.glass);
+						break;
+					case Element.glass:
+						this.handleProjCollision (projectileElement, Element.fire, Element.air);
+						break;
+					case Element.normal:
+						levelManager.DecreaseLives (livesNormalAttack);
+						break;
+					case Element.spirit:
+						this.handleProjCollision(projectileElement, Element.air, Element.earth);
+						break;
+					case Element.water:
+						this.handleProjCollision(projectileElement, Element.earth, Element.fire);
+						break;
+				}
+				Destroy(other.gameObject);
+				break;
+		}
+	}
+
+	private void handleProjCollision(Element projectileElement, Element greatElement, Element badElement)
+	{
+		if (projectileElement == greatElement) 
+		{
+			levelManager.DecreaseLives (livesGreatAttack);
+		} 
+		else if (projectileElement == badElement) 
+		{
+			levelManager.DecreaseLives (livesBadAttack);
+		} 
+		else 
+		{
+			levelManager.DecreaseLives(livesNormalAttack);
 		}
 	}
 }
