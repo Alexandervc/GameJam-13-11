@@ -4,31 +4,32 @@ using System.Collections;
 public class CharacterMovement : MonoBehaviour {
     CharacterController character;
 
-	// Use this for initialization
-	void Start () {
+	private float speed;
 
+	// Use this for initialization
+	void Start () 
+	{
+		character = GetComponent<CharacterController> ();
+
+		speed = 5;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if(Input.GetKeyDown(KeyCode.W))
-        {
+	void Update () 
+	{
+        
+	}
 
-        }
+	//Moves the character to the right
+	public void MoveRight()
+	{
+		character.Move (Vector3.right * Time.deltaTime * speed);
+	}
 
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            
-        }
 
-        if(Input.GetKeyDown(KeyCode.S))
-        {
-            
-        }
-
-        if(Input.GetKeyDown(KeyCode.D))
-        {
-            
-        }
+	//Moves the character to the left
+	public void MoveLeft()
+	{
+		character.Move (Vector3.left * Time.deltaTime * speed);
 	}
 }

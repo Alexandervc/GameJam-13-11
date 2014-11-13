@@ -4,19 +4,22 @@ using System.Collections;
 public class CameraMovement : MonoBehaviour {
     public Transform playerTransform;
 
-    private Vector3 aimPos;
-    private float smooth;
+	private int middleWidth;
+	private float camY = 5f;
+	private float camZ = -10f;
 
 	// Use this for initialization
-	void Start () {
-        smooth = 0.05f;
+	void Start () 
+	{
+		middleWidth = Screen.width / 2;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		//
-        aimPos = playerTransform.position + (playerTransform.forward * -2.5f) + (playerTransform.up * 1.5f);
-        transform.position = Vector3.Lerp(transform.position, aimPos, smooth);
-        transform.LookAt(playerTransform);
+	void Update () 
+	{
+		if (playerTransform.position.x >= middleWidth) 
+		{
+			transform.position = new Vector3(playerTransform.position.x, camY, camZ);
+		}
 	}
 }
