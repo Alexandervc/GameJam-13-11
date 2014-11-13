@@ -29,12 +29,16 @@ public class CharacterMovement : MonoBehaviour {
 	{
 		if(character.isGrounded)
 		{
+			Debug.Log(character.isGrounded);
+
+			//Jump movement
 			if(jump)
 			{
 				gravityDirection.y = jumpHeight;
 				jump = false;
 			}
 		}
+
 		//Gravity on character
 		gravityDirection.y -= gravity * Time.deltaTime;
 	}
