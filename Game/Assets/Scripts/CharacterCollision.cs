@@ -2,14 +2,25 @@
 using System.Collections;
 
 public class CharacterCollision : MonoBehaviour {
+	public LevelManager levelManager;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
+	}
+
+	void OnTriggerEnter(Collider other) 
+	{
+		if (other.CompareTag ("enemy")) 
+		{
+			levelManager.DecreaseLives();
+		}
 	}
 }

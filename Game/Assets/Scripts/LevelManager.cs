@@ -2,14 +2,22 @@
 using System.Collections;
 
 public class LevelManager : MonoBehaviour {
+	private int lives = 3;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+		
+	}
+
+	public void DecreaseLives()
+	{
+		lives--;
 	}
 }
