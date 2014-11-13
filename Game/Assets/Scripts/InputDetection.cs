@@ -28,22 +28,22 @@ public class InputDetection : MonoBehaviour {
 
 
 		//Key Input
-		if(Input.GetKeyDown(KeyCode.W))
+		if(Input.GetKey(KeyCode.W))
 		{
 			character.Jump();
 		}
 		
-		if(Input.GetKeyDown(KeyCode.A))
+		if(Input.GetKey(KeyCode.A))
 		{
 			character.MoveLeft();
 		}
 		
-		if(Input.GetKeyDown(KeyCode.S))
+		if(Input.GetKey(KeyCode.S))
 		{
 			
 		}
 		
-		if(Input.GetKeyDown(KeyCode.D))
+		if(Input.GetKey(KeyCode.D))
 		{
 			character.MoveRight ();
 		}
