@@ -26,7 +26,7 @@ public class EnemyManager : MonoBehaviour {
 
 		if (type.Equals("earth"))
 		{
-			speed = 0.1f;
+			speed = 0.05f;
 		}
 	}
 	
@@ -38,17 +38,15 @@ public class EnemyManager : MonoBehaviour {
 
 	private void Move ()
 	{
-		position = RoundFloat(position);
-		print (position);
 
-		if(position == 0)
+		if(position <= 0)
 		{
 			print ("omdraaien begin");
 			position += speed;
 			this.transform.position = new Vector3(this.transform.position.x + speed, this.transform.position.y, 0);
 			direction = Direction.right;
 		}
-		else if (position == range)
+		else if (position >= range)
 		{
 			print ("omdraaien eind");
 			position -= speed;
@@ -70,18 +68,5 @@ public class EnemyManager : MonoBehaviour {
 				this.transform.position = new Vector3(this.transform.position.x - speed, this.transform.position.y, 0);
 			}
 		}
-	}
-
-	private float RoundFloat(float position)
-	{
-		print ("input; " + position);
-		float count = position;
-		count = count * 10;
-		print ("x10; " + count);
-		int round = Mathf.RoundToInt(count);
-		print ("to int; " + round);
-		count = round / 10;
-		print ("/10" + count);
-		return count;
 	}
 }
