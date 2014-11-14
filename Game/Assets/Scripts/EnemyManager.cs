@@ -15,6 +15,9 @@ public class EnemyManager : MonoBehaviour {
 	private int number;
 	private ProjectileManager[] scripts;
 
+	private Animator anim;
+	private int damageHash = Animator.StringToHash("Damage");
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -33,6 +36,8 @@ public class EnemyManager : MonoBehaviour {
 		{
 			speed = 0.03f;
 		}
+
+		anim = GetComponentInChildren<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -150,11 +155,11 @@ public class EnemyManager : MonoBehaviour {
 
 		if (this.direction == DirectionEnum.left)
 		{
-			pos = new Vector3(enemy.position.x - 1.15f, enemy.position.y + 0.5f, 0);
+			pos = new Vector3(enemy.position.x - 1.2f, enemy.position.y + 0.5f, 0);
 		}
 		else if (this.direction == DirectionEnum.right)
 		{
-			pos = new Vector3(enemy.position.x + 1.15f, enemy.position.y + 0.5f, 0);
+			pos = new Vector3(enemy.position.x + 1.2f, enemy.position.y + 0.5f, 0);
 		}
 
 		return pos;
@@ -163,6 +168,33 @@ public class EnemyManager : MonoBehaviour {
 	public Element GetElement()
 	{
 		return this.element;
+	}
+
+	public void OnTriggerEnter(Collider other)
+	{
+		if(other.CompareTag("projectile"))
+		{
+			Destroy(other.gameObject);
+			anim.SetTrigger (damageHash);
+			StartCoroutine(DestroyEnemy());
+		}
+	}
+
+	public void DestroyProjectiles()
+	{
+		for(int i=0; i<5; i++)
+		{
+			if (scripts[i] != null && !scripts[i].GetDestroyed())
+			{
+				scripts[i].DestroyObject();
+			}
+		}
+	}
+
+	private IEnumerator DestroyEnemy()
+	{
+		yield return new WaitForSeconds(0.4f);
+		Destroy (this.gameObject);
 	}
 }
 

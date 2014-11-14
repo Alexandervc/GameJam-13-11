@@ -3,13 +3,16 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour {
 	public UILabel livesText;
+	public UILabel scoreText;
 
 	private int lives = 3;
+	private int score = 0;
 
 	// Use this for initialization
 	void Start () 
 	{
 		livesText.text = lives + "x";
+		scoreText.text = "Score; " + score;
 	}
 	
 	// Update is called once per frame
@@ -26,6 +29,12 @@ public class LevelManager : MonoBehaviour {
 		{
 			GameOver();
 		}
+	}
+
+	public void IncreaseScore(int numberOfScore)
+	{
+		score += numberOfScore;
+		scoreText = "Score; " + score;
 	}
 
 	public void GameOver()

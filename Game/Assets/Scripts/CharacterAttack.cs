@@ -14,8 +14,7 @@ public class CharacterAttack : MonoBehaviour {
 	private Transform attackingEnemy;
 	private Element playerElement;
 	private bool sucking = false;
-	private float suckTimer = 0f;
-	private float endOfSuck = 6f;
+	private float endOfSuck = 0.6f;
 
 	private Animator anim;
 	private int transformHash = Animator.StringToHash ("Transform");
@@ -36,25 +35,10 @@ public class CharacterAttack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (sucking && attackingEnemy != null) 
+		if(sucking && attackingEnemy != null)
 		{
-			suckTimer += Time.deltaTime;
-			if(suckTimer >= (endOfSuck / 2f))
-			{
-				// Destroy enemy
-				Destroy (attackingEnemy.gameObject);
-			}
-			if(suckTimer >= endOfSuck)
-			{
-				// Transform
-				anim.SetInteger ("Element", (int) playerElement);
-				anim.SetTrigger(transformHash);
-				attackingEnemy = null;
-				sucking = false;
-				suckTimer = 0f;
-			}
+			Vector3.Lerp (attackingEnemy.position, transform.position, 0.05f);
 		}
-
 		//Shooting timer
 		if (timeStart > 0)
 		{
@@ -89,12 +73,11 @@ public class CharacterAttack : MonoBehaviour {
 
 	public void Attack(Transform enemyTransform)
 	{
-		Element enemyElement = enemyTransform.gameObject.GetComponent<EnemyManager>().GetElement();
-		if(Vector2.Distance((Vector2) this.transform.position, (Vector2) enemyTransform.position) < 1f)
+		if(Vector2.Distance((Vector2) this.transform.position, (Vector2) enemyTransform.position) < 5f)
 		{
 			attackingEnemy = enemyTransform;
-			this.playerElement = enemyElement;
 			this.sucking = true;
+			StartCoroutine (this.destroyEnemy());
 			anim.SetTrigger (suckHash);
 		}
 		else
@@ -175,5 +158,26 @@ public class CharacterAttack : MonoBehaviour {
 	public bool GetSucking()
 	{
 		return sucking;
+	}
+
+	private IEnumerator destroyEnemy()
+	{
+		yield return new WaitForSeconds (endOfSuck / 2f);
+		// Destroy enemy
+		Element enemyElement = attackingEnemy.gameObject.GetComponent<EnemyManager>().GetElement();
+		attackingEnemy.gameObject.GetComponent<EnemyManager> ().DestroyProjectiles ();
+
+		playerElement = enemyElement;
+		Destroy (attackingEnemy.gameObject);
+		StartCoroutine (transformPlayer ());
+	}
+
+	private IEnumerator transformPlayer()
+	{
+		yield return new WaitForSeconds(endOfSuck / 2f);
+		anim.SetInteger ("Element", (int) playerElement);
+		anim.SetTrigger(transformHash);
+		attackingEnemy = null;
+		sucking = false;
 	}
 }
