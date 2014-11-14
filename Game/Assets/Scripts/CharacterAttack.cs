@@ -44,7 +44,7 @@ public class CharacterAttack : MonoBehaviour {
 	{
 		if(sucking && attackingEnemy != null)
 		{
-			Vector3.Lerp (attackingEnemy.position, transform.position, 0.05f);
+			attackingEnemy.position = Vector3.Lerp (attackingEnemy.position, transform.position, 0.5f);
 		}
 		//Shooting timer
 		if (timeStart > 0)
@@ -80,7 +80,7 @@ public class CharacterAttack : MonoBehaviour {
 
 	public void Attack(Transform enemyTransform)
 	{
-		if(Vector2.Distance((Vector2) this.transform.position, (Vector2) enemyTransform.position) < 5f)
+		if(Vector2.Distance((Vector2) this.transform.position, (Vector2) enemyTransform.position) < 3f)
 		{
 			attackingEnemy = enemyTransform;
 			this.sucking = true;
