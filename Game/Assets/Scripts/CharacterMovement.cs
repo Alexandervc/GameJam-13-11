@@ -5,7 +5,7 @@ public class CharacterMovement : MonoBehaviour {
     CharacterController character;
 	public LevelManager levelManager;
 	public Animator anim;
-	public GameObject sprite;
+	public GameObject flag;
 
 
 	private DirectionEnum direction;
@@ -39,6 +39,10 @@ public class CharacterMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if(transform.position.x > flag.transform.position.x)
+		{
+			StartCoroutine(levelManager.Win ());
+		}
 		if(transform.position.y < 0f && !gameOver)
 		{
 			StartCoroutine(levelManager.GameOver ());

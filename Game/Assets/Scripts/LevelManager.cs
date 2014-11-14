@@ -34,6 +34,13 @@ public class LevelManager : MonoBehaviour {
 		yield return new WaitForSeconds (1);
 		Application.LoadLevel (0);
 	}
+
+	public IEnumerator Win()
+	{
+		character.Jump ();
+		yield return new WaitForSeconds (3);
+		Application.LoadLevel (0);
+	}
 }
 
 public enum Element
