@@ -4,14 +4,17 @@ using System.Collections;
 public class CharacterCollision : MonoBehaviour {
 	public LevelManager levelManager;
 
+	public CharacterController character;
 	private Element playerElement;
 	private int livesBadAttack = 0;
 	private int livesNormalAttack = 1;
 	private int livesGreatAttack = 2;
+	private bool onPlatform;
 
 	// Use this for initialization
 	void Start () 
 	{
+		onPlatform = false;
 		playerElement = GetComponent<CharacterAttack> ().GetElement ();
 	}
 	
@@ -20,6 +23,29 @@ public class CharacterCollision : MonoBehaviour {
 	{
 	
 	}
+
+	/*void OnCollisionEnter (Collision hit)
+	{
+		print ("test");
+		
+		//Check if player touches ground
+		if (hit.gameObject.tag.Equals("platform"))
+		{
+			if (character.isGrounded)
+			{
+				print ("im here");
+				onPlatform = true;
+				print (onPlatform);
+			}
+		}
+		
+		if (hit.gameObject.tag.Equals("ground"))
+		{
+			print ("im here2");
+			onPlatform = false;
+			print (onPlatform);
+		}
+	}*/
 
 	void OnTriggerEnter(Collider other) 
 	{
@@ -75,5 +101,10 @@ public class CharacterCollision : MonoBehaviour {
 		{
 			levelManager.DecreaseLives(livesNormalAttack);
 		}
+	}
+
+	public bool GetOnPlatform()
+	{
+		return this.onPlatform;
 	}
 }

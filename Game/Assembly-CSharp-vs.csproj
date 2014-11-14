@@ -187,9 +187,9 @@
      <Compile Include="Assets\Scripts\CharacterMovement.cs" />
      <Compile Include="Assets\Scripts\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\InputDetection.cs" />
-     <Compile Include="Assets\Scripts\InputManager.cs" />
      <Compile Include="Assets\Scripts\JumpButton.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\MovingPlatformManager.cs" />
      <Compile Include="Assets\Scripts\ProjectileManager.cs" />
      <Compile Include="Assets\Scripts\TransformButton.cs" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
