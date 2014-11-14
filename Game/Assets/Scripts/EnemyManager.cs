@@ -15,7 +15,7 @@ public class EnemyManager : MonoBehaviour {
 	private int number;
 	private ProjectileManager[] scripts;
 
-	private Animator anim;
+	public Animator anim;
 	private int damageHash;
 
 	private GameObject enemyType;
@@ -80,7 +80,6 @@ public class EnemyManager : MonoBehaviour {
 			enemyType = (GameObject)Instantiate(waterEnemy, pos, Quaternion.identity);
 		}
 
-		anim = GetComponentInChildren<Animator> ();
 		damageHash = Animator.StringToHash("Damage");		
 		enemyType.transform.parent = enemy;
 		enemy.localScale = new Vector3(1.5f, 1.5f, 1.5f);
@@ -254,10 +253,7 @@ public class EnemyManager : MonoBehaviour {
 		if(other.CompareTag("projectile"))
 		{
 			Destroy(other.gameObject);
-			if (damageHash != null)
-			{
-				anim.SetTrigger (damageHash);
-			}
+			anim.SetTrigger (damageHash);
 			StartCoroutine(DestroyEnemy());
 		}
 	}
