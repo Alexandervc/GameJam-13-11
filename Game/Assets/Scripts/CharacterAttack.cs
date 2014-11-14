@@ -28,31 +28,33 @@ public class CharacterAttack : MonoBehaviour {
 		}
 		else
 		{
-			switch(playerElement)
-			{
+			// Shoot new projectile!!
+			// Set projectile element to playerElement
+//			switch(playerElement)
+//			{
 				//Projectile projectileInstantiate(projectilePrefab);
-				case Element.air:
-					// do normal
-					break;
-				case Element.earth:
-					// earthquake
-					break;
-				case Element.fire:
-					// fireball
-					break;
-				case Element.glass:
-					// do normal
-					break;
-				case Element.normal:
-					// do normal
-					break;
-				case Element.spirit:
-					// take over
-					break;
-				case Element.water:
-					// bubble cage
-					break;
-			}
+//				case Element.air:
+//					// do normal
+//					break;
+//				case Element.earth:
+//					// earthquake
+//					break;
+//				case Element.fire:
+//					// fireball
+//					break;
+//				case Element.glass:
+//					// do normal
+//					break;
+//				case Element.normal:
+//					// do normal
+//					break;
+//				case Element.spirit:
+//					// take over
+//					break;
+//				case Element.water:
+//					// bubble cage
+//					break;
+//			}
 		}
 	}
 
