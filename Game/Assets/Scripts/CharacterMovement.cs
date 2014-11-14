@@ -12,6 +12,7 @@ public class CharacterMovement : MonoBehaviour {
 	private float gravity;
 
 	private bool jump;
+	private bool right;
 
 	private int jumpHash = Animator.StringToHash("Jump");
 
@@ -25,6 +26,7 @@ public class CharacterMovement : MonoBehaviour {
 		gravity = 15;
 
 		jump = false;
+		right = true;
 	}
 	
 	// Update is called once per frame
@@ -50,13 +52,23 @@ public class CharacterMovement : MonoBehaviour {
 	public void MoveRight()
 	{
 		character.Move (Vector3.right * Time.deltaTime * speed);
+		
+		if(!right)
+			transform.Rotate(new Vector3 (0, 180, 0));
+		
+		right = true;
 	}
-
-
+	
+	
 	//Moves the character to the left
 	public void MoveLeft()
 	{
 		character.Move (Vector3.left * Time.deltaTime * speed);
+		
+		if(right)
+			transform.Rotate(new Vector3(0, 180, 0));
+		
+		right = false;
 	}
 
 	public void Jump()
