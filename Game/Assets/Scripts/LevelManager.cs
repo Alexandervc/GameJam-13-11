@@ -3,6 +3,7 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour {
 	public UILabel livesText;
+	public CharacterMovement character;
 
 	private int lives = 3;
 
@@ -24,12 +25,13 @@ public class LevelManager : MonoBehaviour {
 		livesText.text = lives + "x";
 		if (lives == 0) 
 		{
-			GameOver();
+			StartCoroutine(GameOver());
 		}
 	}
 
-	public void GameOver()
+	public IEnumerator GameOver()
 	{
+		yield return new WaitForSeconds (1);
 		Application.LoadLevel (0);
 	}
 }
