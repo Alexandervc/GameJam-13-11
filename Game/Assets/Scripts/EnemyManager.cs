@@ -12,10 +12,8 @@ public class EnemyManager : MonoBehaviour {
 	
 	private int count;
 	public GameObject projObject;
-	private GameObject projectile;
 	private int number;
-	private GameObject[] projectiles;
-	private DirectionEnum[] directions;
+	private ProjectileManager[] scripts;
 
 	// Use this for initialization
 	void Start ()
@@ -28,10 +26,8 @@ public class EnemyManager : MonoBehaviour {
 		position = 0;
 		this.direction = DirectionEnum.right;
 
-		projectile = null;
 		number = 0;
-		projectiles = new GameObject[5];
-		directions = new DirectionEnum[5];
+		scripts = new ProjectileManager[5];
 
 		if (element == Element.earth)
 		{
@@ -44,49 +40,70 @@ public class EnemyManager : MonoBehaviour {
 	{
 		if (count == 100)
 		{
-			projectiles[number] = (GameObject)Instantiate(projObject, GetProjectilePosition(), Quaternion.identity);
-			directions[number] = this.direction;
+			count = 0;
+			GameObject pro = (GameObject)ScriptableObject.Instantiate(projObject, GetProjectilePosition(), Quaternion.identity);
+			scripts[number] = new ProjectileManager(pro, number, this.direction, this.element, GetProjectilePosition());
 
 			//Reset numbers
 			switch (number)
 			{
 				case 0:
-					Destroy(projectiles[1]);
+					if (scripts[1] != null)
+					{
+						scripts[1].DestroyObject();
+					}
 					number++;
 					break;
 				case 1:
-					Destroy(projectiles[2]);
+					if (scripts[2] != null)
+					{
+						scripts[2].DestroyObject();
+					}
 					number++;
 					break;
 				case 2:
-				    Destroy(projectiles[3]);
+					if (scripts[3] != null)
+					{
+						scripts[3].DestroyObject();
+					}
 					number++;
 					break;
 				case 3:
-				    Destroy(projectiles[4]);
+					if (scripts[4] != null)
+					{
+						scripts[4].DestroyObject();
+					}
 					number++;
 					break;
 				case 4:
-				    Destroy(projectiles[0]);
+					if (scripts[0] != null)
+					{
+						scripts[0].DestroyObject();
+					}
 					number = 0;
 					break;
 			}
-
-			count = 0;
 		}
 		else
 		{
 			for (int i=0; i<5; i++)
 			{
-				if (projectiles[i] != null)
+				if (scripts[i] != null)
 				{
-					if (directions[i] == DirectionEnum.right)
+					if (!scripts[i].GetDestroyed() && scripts[i].GetProjectile() != null)
 					{
-						projectiles[i].transform.position = new Vector3(projectiles[i].transform.position.x + (speed * 1.5f), projectiles[i].transform.position.y, 0);
-					}
-					else if (directions[i] == DirectionEnum.left)
-					{
-						projectiles[i].transform.position = new Vector3(projectiles[i].transform.position.x - (speed * 1.5f), projectiles[i].transform.position.y, 0);
+						Transform trans = scripts[i].GetProjectile().transform;
+
+						if (scripts[i].GetDirection() == DirectionEnum.right)
+						{
+							Vector3 v3 = new Vector3(trans.position.x + (speed * 1.5f), trans.position.y, 0);
+							scripts[i].SetPosition(v3);
+						}
+						else if (scripts[i].GetDirection() == DirectionEnum.left)
+						{
+							Vector3 v3 = new Vector3(trans.position.x - (speed * 1.5f), trans.position.y, 0);
+							scripts[i].SetPosition(v3);
+						}
 					}
 				}
 			}
