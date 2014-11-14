@@ -2,8 +2,15 @@
 using System.Collections;
 
 public class CharacterAttack : MonoBehaviour {
+
 	public GameObject projectilePrefab;
-	
+
+	public GameObject character;
+	public CharacterMovement movement;
+	private ProjectileManager[] scripts;
+	private int number;
+	private float timeStart;
+
 	private Transform attackingEnemy;
 	private Element playerElement;
 	private bool sucking = false;
@@ -17,6 +24,10 @@ public class CharacterAttack : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		scripts = new ProjectileManager[5];
+		number = 0;
+		timeStart = 0;
+
 		attackingEnemy = null;
 		playerElement = Element.normal;
 		anim = GetComponentInChildren<Animator> ();
@@ -59,32 +70,100 @@ public class CharacterAttack : MonoBehaviour {
 		{
 			// Shoot new projectile!!
 			// Set projectile element to playerElement
-//			switch(playerElement)
-//			{
-				//Projectile projectileInstantiate(projectilePrefab);
-//				case Element.air:
-//					// do normal
-//					break;
-//				case Element.earth:
-//					// earthquake
-//					break;
-//				case Element.fire:
-//					// fireball
-//					break;
-//				case Element.glass:
-//					// do normal
-//					break;
-//				case Element.normal:
-//					// do normal
-//					break;
-//				case Element.spirit:
-//					// take over
-//					break;
-//				case Element.water:
-//					// bubble cage
-//					break;
-//			}
+			if (timeStart == 0)
+			{
+				GameObject pro = (GameObject)ScriptableObject.Instantiate(projectilePrefab, GetProjectilePosition(), Quaternion.identity);
+				scripts[number] = new ProjectileManager(pro, 6, movement.GetDirection(), this.playerElement, GetProjectilePosition());
+				timeStart = Time.time;
+
+				//Reset numbers
+				switch (number)
+				{
+					case 0:
+						if (scripts[1] != null)
+						{
+							scripts[1].DestroyObject();
+						}
+						number++;
+						break;
+					case 1:
+						if (scripts[2] != null)
+						{
+							scripts[2].DestroyObject();
+						}
+						number++;
+						break;
+					case 2:
+						if (scripts[3] != null)
+						{
+							scripts[3].DestroyObject();
+						}
+						number++;
+						break;
+					case 3:
+						if (scripts[4] != null)
+						{
+							scripts[4].DestroyObject();
+						}
+						number++;
+						break;
+					case 4:
+						if (scripts[0] != null)
+						{
+							scripts[0].DestroyObject();
+						}
+						number = 0;
+						break;
+				}
+			}
+
+			//Shooting timer
+			if (timeStart > 0)
+			{
+				if (Time.time > timeStart + 5f)
+				{
+					timeStart = 0;
+				}
+			}
+
+			for (int i=0; i<5; i++)
+			{
+				if (scripts[i] != null)
+				{
+					if (!scripts[i].GetDestroyed() && scripts[i].GetProjectile() != null)
+					{
+						Transform trans = scripts[i].GetProjectile().transform;
+							
+						if (scripts[i].GetDirection() == DirectionEnum.right)
+						{
+							Vector3 v3 = new Vector3(trans.position.x + (movement.GetSpeed() * 1.5f), trans.position.y, 0);
+							scripts[i].SetPosition(v3);
+						}
+						else if (scripts[i].GetDirection() == DirectionEnum.left)
+						{
+							Vector3 v3 = new Vector3(trans.position.x - (movement.GetSpeed() * 1.5f), trans.position.y, 0);
+							scripts[i].SetPosition(v3);
+						}
+					}
+				}
+			}
 		}
+	}
+
+	private Vector3 GetProjectilePosition()
+	{
+		Vector3 pos = new Vector3(0,0,0);
+		
+		if (movement.GetDirection() == DirectionEnum.left)
+		{
+			pos = new Vector3(character.transform.position.x - 0.85f, character.transform.position.y + 0.5f, 0);
+		}
+		else if (movement.GetDirection() == DirectionEnum.right)
+		{
+			pos = new Vector3(character.transform.position.x + 0.85f, character.transform.position.y + 0.5f, 0);
+		}
+		
+		return pos;
 	}
 
 	public Element GetElement()

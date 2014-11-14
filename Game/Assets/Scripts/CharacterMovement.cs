@@ -5,6 +5,7 @@ public class CharacterMovement : MonoBehaviour {
     CharacterController character;
 	public Animator anim;
 
+	private DirectionEnum direction;
 	private Vector3 moveDirection = Vector3.down;
 
 	private float speed;
@@ -20,6 +21,7 @@ public class CharacterMovement : MonoBehaviour {
 	void Start () 
 	{
 		character = GetComponent<CharacterController> ();
+		this.direction = DirectionEnum.right;
 
 		speed = 5;
 		jumpHeight = 10;
@@ -48,10 +50,21 @@ public class CharacterMovement : MonoBehaviour {
 		character.Move(moveDirection * Time.deltaTime);
 	}
 
+	public DirectionEnum GetDirection()
+	{
+		return this.direction;
+	}
+
+	public float GetSpeed()
+	{
+		return this.speed;
+	}
+
 	//Moves the character to the right
 	public void MoveRight()
 	{
 		character.Move (Vector3.right * Time.deltaTime * speed);
+		this.direction = DirectionEnum.right;
 		
 		if(!right)
 			transform.Rotate(new Vector3 (0, 180, 0));
@@ -64,6 +77,7 @@ public class CharacterMovement : MonoBehaviour {
 	public void MoveLeft()
 	{
 		character.Move (Vector3.left * Time.deltaTime * speed);
+		this.direction = DirectionEnum.left;
 		
 		if(right)
 			transform.Rotate(new Vector3(0, 180, 0));
