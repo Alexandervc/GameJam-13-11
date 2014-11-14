@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour {
 	private ProjectileManager[] scripts;
 
 	private Animator anim;
-	private int damageHash = Animator.StringToHash("Damage");
+	private int damageHash;
 
 	private GameObject enemyType;
 	public GameObject airEnemy;
@@ -76,6 +76,7 @@ public class EnemyManager : MonoBehaviour {
 		}
 
 		anim = GetComponentInChildren<Animator> ();
+		damageHash = Animator.StringToHash("Damage")
 		
 		enemyType.transform.parent = enemy;
 		enemy.localScale = new Vector3(1.5f, 1.5f, 1.5f);

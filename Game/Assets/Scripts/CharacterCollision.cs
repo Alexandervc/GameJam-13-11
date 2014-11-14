@@ -78,6 +78,10 @@ public class CharacterCollision : MonoBehaviour {
 				}
 				Destroy(other.gameObject);
 				break;
+			case "coin":
+				Destroy(other.gameObject);
+				levelManager.IncreaseScore (1);
+				break;
 		}
 	}
 
