@@ -5,7 +5,7 @@ public class CameraMovement : MonoBehaviour {
     public Transform playerTransform;
 
 	private float beginCam = 8.7f;
-	private float endCam = 18.5f;
+	private float endCam = 98.5f;
 	private float camY = 5f;
 	private float camZ = -10f;
 
