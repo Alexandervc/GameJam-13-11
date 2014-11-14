@@ -81,8 +81,7 @@ public class EnemyManager : MonoBehaviour {
 		}
 
 		anim = GetComponentInChildren<Animator> ();
-		damageHash = Animator.StringToHash("Damage")
-		
+		damageHash = Animator.StringToHash("Damage");		
 		enemyType.transform.parent = enemy;
 		enemy.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 	}
@@ -255,7 +254,10 @@ public class EnemyManager : MonoBehaviour {
 		if(other.CompareTag("projectile"))
 		{
 			Destroy(other.gameObject);
-			anim.SetTrigger (damageHash);
+			if (damageHash != null)
+			{
+				anim.SetTrigger (damageHash);
+			}
 			StartCoroutine(DestroyEnemy());
 		}
 	}
