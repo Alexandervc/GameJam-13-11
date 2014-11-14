@@ -25,25 +25,19 @@ public class CharacterCollision : MonoBehaviour {
 	}
 
 	void OnControllerColliderHit (ControllerColliderHit hit)
-	{
-		print ("test");
-		
+	{		
 		//Check if player touches ground
 		if (hit.gameObject.tag.Equals("platform"))
 		{
 			if (character.isGrounded)
 			{
-				print ("im here");
 				onPlatform = true;
-				print (onPlatform);
 			}
 		}
 		
 		if (hit.gameObject.tag.Equals("ground"))
 		{
-			print ("im here2");
 			onPlatform = false;
-			print (onPlatform);
 		}
 	}
 

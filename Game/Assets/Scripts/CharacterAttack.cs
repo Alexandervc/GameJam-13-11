@@ -55,6 +55,15 @@ public class CharacterAttack : MonoBehaviour {
 			}
 		}
 
+		//Shooting timer
+		if (timeStart > 0)
+		{
+			if (Time.time > timeStart + 1f)
+			{
+				timeStart = 0;
+			}
+		}
+
 		for (int i=0; i<5; i++)
 		{
 			if (scripts[i] != null)
@@ -65,12 +74,12 @@ public class CharacterAttack : MonoBehaviour {
 					
 					if (scripts[i].GetDirection() == DirectionEnum.right)
 					{
-						Vector3 v3 = new Vector3(trans.position.x + (movement.GetSpeed() * 1.5f), trans.position.y, 0);
+						Vector3 v3 = new Vector3(trans.position.x + 0.05f, trans.position.y, 0);
 						scripts[i].SetPosition(v3);
 					}
 					else if (scripts[i].GetDirection() == DirectionEnum.left)
 					{
-						Vector3 v3 = new Vector3(trans.position.x - (movement.GetSpeed() * 1.5f), trans.position.y, 0);
+						Vector3 v3 = new Vector3(trans.position.x - 0.05f, trans.position.y, 0);
 						scripts[i].SetPosition(v3);
 					}
 				}
@@ -90,14 +99,15 @@ public class CharacterAttack : MonoBehaviour {
 		}
 		else
 		{
-			// Shoot new projectile!!
+			print ("shoot");
+			// Shoot new projectile
 			// Set projectile element to playerElement
 			if (timeStart == 0)
 			{
 				GameObject pro = (GameObject)ScriptableObject.Instantiate(projectilePrefab, GetProjectilePosition(), Quaternion.identity);
 				scripts[number] = new ProjectileManager(pro, 6, movement.GetDirection(), this.playerElement, GetProjectilePosition());
 				timeStart = Time.time;
-
+			
 				//Reset numbers
 				switch (number)
 				{
@@ -136,15 +146,6 @@ public class CharacterAttack : MonoBehaviour {
 						}
 						number = 0;
 						break;
-				}
-			}
-
-			//Shooting timer
-			if (timeStart > 0)
-			{
-				if (Time.time > timeStart + 2f)
-				{
-					timeStart = 0;
 				}
 			}
 		}
