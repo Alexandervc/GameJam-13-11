@@ -3,10 +3,12 @@ using System.Collections;
 
 public class InputDetection : MonoBehaviour {
 	CharacterMovement character;
+	CharacterAttack charAttack;
 
 	void Start() 
 	{
 		character = GetComponent<CharacterMovement> ();
+		charAttack = GetComponent<CharacterAttack> ();
 	}
 
 	void Update() 
@@ -15,8 +17,19 @@ public class InputDetection : MonoBehaviour {
 		if(Input.touchCount == 1)
 		{
 			Touch touch = Input.touches[0];
-
-			if(touch.position.x > (Screen.width - (Screen.width / 4)))
+			GameObject hit = this.CheckTouch(touch.position);
+			if(hit != null && (hit.CompareTag("Player") || hit.CompareTag("enemy")) && touch.phase == TouchPhase.Began)
+			{
+				if(hit.CompareTag("Player"))
+				{
+					character.Jump ();
+				}
+				else if (hit.CompareTag("enemy"))
+				{
+					charAttack.Attack (hit.transform);
+				}
+			}
+			else if(touch.position.x > (Screen.width - (Screen.width / 4)))
 			{
 				character.MoveRight();
 			}
@@ -46,5 +59,17 @@ public class InputDetection : MonoBehaviour {
 		{
 			character.MoveRight ();
 		}
+	}
+
+	private GameObject CheckTouch(Vector3 touchPosition)
+	{
+		Vector3 pos = Camera.main.ScreenToWorldPoint(touchPosition);
+		Vector3 touchPos = new Vector3(pos.x, pos.y, 0f);
+		Collider[] hits = Physics.OverlapSphere (touchPos, 0f);
+		if(hits.Length > 0)
+		{
+			return hits[0].gameObject;
+		}
+		return null;
 	}
 }
