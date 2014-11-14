@@ -5,6 +5,8 @@ public class CharacterMovement : MonoBehaviour {
     CharacterController character;
 	public LevelManager levelManager;
 	public Animator anim;
+	public GameObject flag;
+
 
 	private DirectionEnum direction;
 	private Vector3 moveDirection = Vector3.down;
@@ -15,6 +17,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	private bool jump;
 	private bool right;
+	private bool gameOver;
 
 	private int jumpHash = Animator.StringToHash("Jump");
 
@@ -30,29 +33,38 @@ public class CharacterMovement : MonoBehaviour {
 
 		jump = false;
 		right = true;
+		gameOver = false;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if(transform.position.y < 0f)
+		if(transform.position.x > flag.transform.position.x)
 		{
-			levelManager.GameOver ();
+			StartCoroutine(levelManager.Win ());
 		}
-		if(character.isGrounded)
+		if(transform.position.y < 0f && !gameOver)
 		{
-			//Jump movement
-			if(jump)
+			StartCoroutine(levelManager.GameOver ());
+			gameOver = true;
+		}
+		if(!gameOver)
+		{
+			if(character.isGrounded)
 			{
-				anim.SetTrigger(jumpHash);
-				moveDirection.y = jumpHeight;
-				jump = false;
+				//Jump movement
+				if(jump)
+				{
+					anim.SetTrigger(jumpHash);
+					moveDirection.y = jumpHeight;
+					jump = false;
+				}
 			}
-		}
 
-		//Gravity on character
-		moveDirection.y -= gravity * Time.deltaTime;
-		character.Move(moveDirection * Time.deltaTime);
+			//Gravity on character
+			moveDirection.y -= gravity * Time.deltaTime;
+			character.Move(moveDirection * Time.deltaTime);
+		}
 	}
 
 	public DirectionEnum GetDirection()

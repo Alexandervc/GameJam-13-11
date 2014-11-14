@@ -4,6 +4,7 @@ using System.Collections;
 public class LevelManager : MonoBehaviour {
 	public UILabel livesText;
 	public UILabel scoreText;
+	public CharacterMovement character;
 
 	private int lives = 3;
 	private int score = 0;
@@ -27,7 +28,7 @@ public class LevelManager : MonoBehaviour {
 		livesText.text = lives + "x";
 		if (lives == 0) 
 		{
-			GameOver();
+			StartCoroutine(GameOver());
 		}
 	}
 
@@ -36,9 +37,16 @@ public class LevelManager : MonoBehaviour {
 		score += numberOfScore;
 		scoreText = "Score; " + score;
 	}
-
-	public void GameOver()
+	public IEnumerator GameOver()
 	{
+		yield return new WaitForSeconds (1);
+		Application.LoadLevel (0);
+	}
+
+	public IEnumerator Win()
+	{
+		character.Jump ();
+		yield return new WaitForSeconds (3);
 		Application.LoadLevel (0);
 	}
 }
