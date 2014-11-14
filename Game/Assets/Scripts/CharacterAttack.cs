@@ -54,6 +54,28 @@ public class CharacterAttack : MonoBehaviour {
 				suckTimer = 0f;
 			}
 		}
+
+		for (int i=0; i<5; i++)
+		{
+			if (scripts[i] != null)
+			{
+				if (!scripts[i].GetDestroyed() && scripts[i].GetProjectile() != null)
+				{
+					Transform trans = scripts[i].GetProjectile().transform;
+					
+					if (scripts[i].GetDirection() == DirectionEnum.right)
+					{
+						Vector3 v3 = new Vector3(trans.position.x + (movement.GetSpeed() * 1.5f), trans.position.y, 0);
+						scripts[i].SetPosition(v3);
+					}
+					else if (scripts[i].GetDirection() == DirectionEnum.left)
+					{
+						Vector3 v3 = new Vector3(trans.position.x - (movement.GetSpeed() * 1.5f), trans.position.y, 0);
+						scripts[i].SetPosition(v3);
+					}
+				}
+			}
+		}
 	}
 
 	public void Attack(Transform enemyTransform)
@@ -120,31 +142,9 @@ public class CharacterAttack : MonoBehaviour {
 			//Shooting timer
 			if (timeStart > 0)
 			{
-				if (Time.time > timeStart + 5f)
+				if (Time.time > timeStart + 2f)
 				{
 					timeStart = 0;
-				}
-			}
-
-			for (int i=0; i<5; i++)
-			{
-				if (scripts[i] != null)
-				{
-					if (!scripts[i].GetDestroyed() && scripts[i].GetProjectile() != null)
-					{
-						Transform trans = scripts[i].GetProjectile().transform;
-							
-						if (scripts[i].GetDirection() == DirectionEnum.right)
-						{
-							Vector3 v3 = new Vector3(trans.position.x + (movement.GetSpeed() * 1.5f), trans.position.y, 0);
-							scripts[i].SetPosition(v3);
-						}
-						else if (scripts[i].GetDirection() == DirectionEnum.left)
-						{
-							Vector3 v3 = new Vector3(trans.position.x - (movement.GetSpeed() * 1.5f), trans.position.y, 0);
-							scripts[i].SetPosition(v3);
-						}
-					}
 				}
 			}
 		}
@@ -156,11 +156,11 @@ public class CharacterAttack : MonoBehaviour {
 		
 		if (movement.GetDirection() == DirectionEnum.left)
 		{
-			pos = new Vector3(character.transform.position.x - 0.85f, character.transform.position.y + 0.5f, 0);
+			pos = new Vector3(character.transform.position.x - 0.85f, character.transform.position.y - 0.1f, 0);
 		}
 		else if (movement.GetDirection() == DirectionEnum.right)
 		{
-			pos = new Vector3(character.transform.position.x + 0.85f, character.transform.position.y + 0.5f, 0);
+			pos = new Vector3(character.transform.position.x + 0.85f, character.transform.position.y - 0.1f, 0);
 		}
 		
 		return pos;
