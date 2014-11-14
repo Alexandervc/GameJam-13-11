@@ -11,7 +11,7 @@ public class EnemyManager : MonoBehaviour {
 	private DirectionEnum direction;
 	
 	private int count;
-	public GameObject projObject;
+
 	private int number;
 	private ProjectileManager[] scripts;
 
@@ -19,12 +19,19 @@ public class EnemyManager : MonoBehaviour {
 	private int damageHash;
 
 	private GameObject enemyType;
+	public GameObject projObject;
 	public GameObject airEnemy;
+	public GameObject airProjectile;
 	public GameObject earthEnemy;
+	public GameObject earthProjectile;
 	public GameObject fireEnemy;
+	public GameObject fireProjectile;
 	public GameObject glassEnemy;
+	public GameObject glassProjectile;
 	public GameObject spiritEnemy;
+	public GameObject spiritProjectile;
 	public GameObject waterEnemy;
+	public GameObject waterProjectile;
 
 	// Use this for initialization
 	void Start ()
@@ -41,8 +48,6 @@ public class EnemyManager : MonoBehaviour {
 		scripts = new ProjectileManager[5];
 		
 		Vector3 pos = new Vector3(enemy.position.x + 0.5f, enemy.position.y + 0.5f, 0);
-		
-		print (element);
 		
 		if (element == Element.air)
 		{
@@ -88,7 +93,40 @@ public class EnemyManager : MonoBehaviour {
 		if (count == 100)
 		{
 			count = 0;
-			GameObject pro = (GameObject)ScriptableObject.Instantiate(projObject, GetProjectilePosition(), Quaternion.identity);
+			GameObject pro = null;
+
+			if (element == Element.air)
+			{
+				speed = 0.03f;
+				pro = (GameObject)ScriptableObject.Instantiate(airProjectile, GetProjectilePosition(), Quaternion.identity);
+			}
+			else if (element == Element.earth)
+			{
+				speed = 0.04f;
+				pro = (GameObject)ScriptableObject.Instantiate(earthProjectile, GetProjectilePosition(), Quaternion.identity);
+			}
+			else if (element == Element.fire) 
+			{
+				speed = 0.04f;
+				pro = (GameObject)ScriptableObject.Instantiate(fireProjectile, GetProjectilePosition(), Quaternion.identity);
+			}
+			else if (element == Element.glass)
+			{
+				speed = 0.02f;
+				pro = (GameObject)ScriptableObject.Instantiate(glassProjectile, GetProjectilePosition(), Quaternion.identity);
+			}
+			else if (element == Element.spirit)
+			{
+				speed = 0.05f;
+				pro = (GameObject)ScriptableObject.Instantiate(spiritProjectile, GetProjectilePosition(), Quaternion.identity);
+			}
+			else if (element == Element.water)
+			{
+				speed = 0.03f;
+				pro = (GameObject)ScriptableObject.Instantiate(waterProjectile, GetProjectilePosition(), Quaternion.identity);
+			}
+
+			//GameObject pro = (GameObject)ScriptableObject.Instantiate(projObject, GetProjectilePosition(), Quaternion.identity);
 			scripts[number] = new ProjectileManager(pro, number, this.direction, this.element, GetProjectilePosition());
 
 			//Reset numbers
