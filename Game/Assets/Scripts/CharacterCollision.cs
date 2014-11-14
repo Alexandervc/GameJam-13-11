@@ -24,7 +24,7 @@ public class CharacterCollision : MonoBehaviour {
 	
 	}
 
-	/*void OnCollisionEnter (Collision hit)
+	void OnCollisionEnter (Collision hit)
 	{
 		print ("test");
 		
@@ -45,7 +45,7 @@ public class CharacterCollision : MonoBehaviour {
 			onPlatform = false;
 			print (onPlatform);
 		}
-	}*/
+	}
 
 	void OnTriggerEnter(Collider other) 
 	{

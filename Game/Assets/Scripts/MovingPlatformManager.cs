@@ -3,11 +3,18 @@ using System.Collections;
 
 public class MovingPlatformManager : MonoBehaviour {
 
+	public enum PlatformType
+	{
+		platform,
+		elevator
+	}
+
 	private Transform platform;
-	private int range;
+	public int range;
 	private float position;
-	private float speed;
+	public float speed;
 	private DirectionEnum direction;
+	public PlatformType platType;
 
 	public CharacterCollision character;
 	public Transform charTrans;
@@ -16,9 +23,7 @@ public class MovingPlatformManager : MonoBehaviour {
 	void Start ()
 	{
 		platform = this.transform;
-		range = 4;
 		position = 0;
-		speed = 0.02f;
 		this.direction = DirectionEnum.right;
 	}
 	
@@ -35,7 +40,15 @@ public class MovingPlatformManager : MonoBehaviour {
 		{
 			position += speed;
 			this.direction = DirectionEnum.right;
-			platform.position = new Vector3(platform.position.x + speed, platform.position.y, 0);
+
+			if (platType == PlatformType.platform)
+			{
+				platform.position = new Vector3(platform.position.x + speed, platform.position.y, 0);
+			}
+			else if (platType == PlatformType.elevator)
+			{
+				platform.position = new Vector3(platform.position.x, platform.position.y + speed, 0);
+			}
 
 			if (character.GetOnPlatform())
 			{
@@ -46,7 +59,15 @@ public class MovingPlatformManager : MonoBehaviour {
 		{
 			position -= speed;
 			this.direction = DirectionEnum.left;
-			platform.position = new Vector3(platform.position.x - speed, platform.position.y, 0);
+
+			if (platType == PlatformType.platform)
+			{
+				platform.position = new Vector3(platform.position.x - speed, platform.position.y, 0);
+			}
+			else if (platType == PlatformType.elevator)
+			{
+				platform.position = new Vector3(platform.position.x, platform.position.y - speed, 0);
+			}
 
 			if (character.GetOnPlatform())
 			{
@@ -58,7 +79,15 @@ public class MovingPlatformManager : MonoBehaviour {
 			if(this.direction == DirectionEnum.right)
 			{
 				position += speed;
-				platform.position = new Vector3(platform.position.x + speed, platform.position.y, 0);
+
+				if (platType == PlatformType.platform)
+				{
+					platform.position = new Vector3(platform.position.x + speed, platform.position.y, 0);
+				}
+				else if (platType == PlatformType.elevator)
+				{
+					platform.position = new Vector3(platform.position.x, platform.position.y + speed, 0);
+				}
 
 				if (character.GetOnPlatform())
 				{
@@ -68,7 +97,15 @@ public class MovingPlatformManager : MonoBehaviour {
 			else if(this.direction == DirectionEnum.left)
 			{
 				position -= speed;
-				platform.position = new Vector3(platform.position.x - speed, platform.position.y, 0);
+
+				if (platType == PlatformType.platform)
+				{
+					platform.position = new Vector3(platform.position.x - speed, platform.position.y, 0);
+				}
+				else if (platType == PlatformType.elevator)
+				{
+					platform.position = new Vector3(platform.position.x, platform.position.y - speed, 0);
+				}
 				
 				if (character.GetOnPlatform())
 				{
