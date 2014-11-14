@@ -3,6 +3,14 @@ guid: 72d7360d81b2708419792c69a928e180
 TextureImporter:
   fileIDToRecycleName:
     21300000: earthJump
+    21300002: earthJump_0
+    21300004: earthJump_1
+    21300006: earthJump_2
+    21300008: earthJump_3
+    21300010: earthJump_4
+    21300012: earthJump_5
+    21300014: earthJump_6
+    21300016: earthJump_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +34,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -43,6 +51,86 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: earthJump_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 103
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: earthJump_1
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 2
+        width: 103
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: earthJump_2
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 2
+        width: 103
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: earthJump_3
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 3
+        width: 103
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: earthJump_4
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 3
+        width: 103
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: earthJump_5
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 3
+        width: 103
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: earthJump_6
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 3
+        width: 103
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: earthJump_7
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 3
+        width: 103
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

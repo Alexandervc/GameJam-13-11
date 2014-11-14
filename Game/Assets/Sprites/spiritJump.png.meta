@@ -3,6 +3,14 @@ guid: 902d9084273d68a4685610b56a5c2d4d
 TextureImporter:
   fileIDToRecycleName:
     21300000: spiritJump
+    21300002: spiritJump_0
+    21300004: spiritJump_1
+    21300006: spiritJump_2
+    21300008: spiritJump_3
+    21300010: spiritJump_4
+    21300012: spiritJump_5
+    21300014: spiritJump_6
+    21300016: spiritJump_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +34,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -43,6 +51,86 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: spiritJump_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 103
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spiritJump_1
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 1
+        width: 103
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spiritJump_2
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 2
+        width: 103
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spiritJump_3
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 4
+        width: 103
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spiritJump_4
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 4
+        width: 103
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spiritJump_5
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 4
+        width: 103
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spiritJump_6
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 3
+        width: 103
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spiritJump_7
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 3
+        width: 103
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

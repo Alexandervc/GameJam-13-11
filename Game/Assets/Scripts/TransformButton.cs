@@ -8,6 +8,7 @@ public class TransformButton : MonoBehaviour {
 
 	void OnClick(){
 		int element = anim.GetInteger ("Element");
+		//0 = Earth, 1 = Water, 2 = Fire, 3 = Glass, 4 = Air, 5 = Spirit, 6 = Normal
 
 		element++;
 		if(element > 6)
