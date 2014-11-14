@@ -18,26 +18,67 @@ public class EnemyManager : MonoBehaviour {
 	private Animator anim;
 	private int damageHash = Animator.StringToHash("Damage");
 
+	private GameObject enemyType;
+	public GameObject airEnemy;
+	public GameObject earthEnemy;
+	public GameObject fireEnemy;
+	public GameObject glassEnemy;
+	public GameObject spiritEnemy;
+	public GameObject waterEnemy;
+
 	// Use this for initialization
 	void Start ()
 	{
 		enemy = this.transform;
 		count = 0;
-
+		
 		//walkingrange of enemy
 		range = 5;
 		position = 0;
 		this.direction = DirectionEnum.right;
-
+		
 		number = 0;
 		scripts = new ProjectileManager[5];
-
-		if (element == Element.earth)
+		
+		Vector3 pos = new Vector3(enemy.position.x + 0.5f, enemy.position.y + 0.5f, 0);
+		
+		print (element);
+		
+		if (element == Element.air)
 		{
 			speed = 0.03f;
+			enemyType = (GameObject)Instantiate(airEnemy, pos, Quaternion.identity);
+		}
+		else if (element == Element.earth)
+		{
+			speed = 0.04f;
+			enemyType = (GameObject)Instantiate(earthEnemy, pos, Quaternion.identity);
+		}
+		else if (element == Element.fire) 
+		{
+			speed = 0.04f;
+			enemyType = (GameObject)Instantiate(fireEnemy, pos, Quaternion.identity);
+		}
+		else if (element == Element.glass)
+		{
+			speed = 0.02f;
+			enemyType = (GameObject)Instantiate(glassEnemy, pos, Quaternion.identity);
+		}
+		else if (element == Element.spirit)
+		{
+			speed = 0.05f;
+			enemyType = (GameObject)Instantiate(spiritEnemy, pos, Quaternion.identity);
+		}
+		else if (element == Element.water)
+		{
+			speed = 0.03f;
+			enemyType = (GameObject)Instantiate(waterEnemy, pos, Quaternion.identity);
 		}
 
 		anim = GetComponentInChildren<Animator> ();
+		
+		enemyType.transform.parent = enemy;
+		enemy.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 	}
 	
 	// Update is called once per frame

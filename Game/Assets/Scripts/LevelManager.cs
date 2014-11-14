@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour {
 	public void IncreaseScore(int numberOfScore)
 	{
 		score += numberOfScore;
-		scoreText = "Score; " + score;
+		scoreText.text = "Score; " + score;
 	}
 	public IEnumerator GameOver()
 	{
