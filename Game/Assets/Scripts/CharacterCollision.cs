@@ -24,7 +24,7 @@ public class CharacterCollision : MonoBehaviour {
 	
 	}
 
-	void OnCollisionEnter (Collision hit)
+	void OnControllerColliderHit (ControllerColliderHit hit)
 	{
 		print ("test");
 		
