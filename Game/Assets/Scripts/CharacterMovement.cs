@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CharacterMovement : MonoBehaviour {
     CharacterController character;
+	public LevelManager levelManager;
 	public Animator anim;
 
 	private DirectionEnum direction;
@@ -34,6 +35,10 @@ public class CharacterMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if(transform.position.y < 0f)
+		{
+			levelManager.GameOver ();
+		}
 		if(character.isGrounded)
 		{
 			//Jump movement
