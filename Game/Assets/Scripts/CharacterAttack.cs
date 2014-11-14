@@ -20,6 +20,13 @@ public class CharacterAttack : MonoBehaviour {
 	private int transformHash = Animator.StringToHash ("Transform");
 	private int suckHash = Animator.StringToHash("Suck");
 
+	public GameObject airProjectile;
+	public GameObject earthProjectile;
+	public GameObject fireProjectile;
+	public GameObject glassProjectile;
+	public GameObject spiritProjectile;
+	public GameObject waterProjectile;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -87,8 +94,38 @@ public class CharacterAttack : MonoBehaviour {
 			// Set projectile element to playerElement
 			if (timeStart == 0)
 			{
-				GameObject pro = (GameObject)ScriptableObject.Instantiate(projectilePrefab, GetProjectilePosition(), Quaternion.identity);
-				scripts[number] = new ProjectileManager(pro, 6, movement.GetDirection(), this.playerElement, GetProjectilePosition());
+				GameObject pro = null;
+				
+				if (playerElement == Element.air)
+				{
+					pro = (GameObject)ScriptableObject.Instantiate(airProjectile, GetProjectilePosition(), Quaternion.identity);
+				}
+				else if (playerElement == Element.earth)
+				{
+					pro = (GameObject)ScriptableObject.Instantiate(earthProjectile, GetProjectilePosition(), Quaternion.identity);
+				}
+				else if (playerElement == Element.fire) 
+				{
+					pro = (GameObject)ScriptableObject.Instantiate(fireProjectile, GetProjectilePosition(), Quaternion.identity);
+				}
+				else if (playerElement == Element.glass)
+				{
+					pro = (GameObject)ScriptableObject.Instantiate(glassProjectile, GetProjectilePosition(), Quaternion.identity);
+				}
+				else if (playerElement == Element.spirit)
+				{
+					pro = (GameObject)ScriptableObject.Instantiate(spiritProjectile, GetProjectilePosition(), Quaternion.identity);
+				}
+				else if (playerElement == Element.water)
+				{
+					pro = (GameObject)ScriptableObject.Instantiate(waterProjectile, GetProjectilePosition(), Quaternion.identity);
+				}
+				else if (playerElement == Element.normal)
+				{
+					pro = (GameObject)ScriptableObject.Instantiate(projectilePrefab, GetProjectilePosition(), Quaternion.identity);
+				}
+				
+				scripts[number] = new ProjectileManager(pro, number, movement.GetDirection(), playerElement, GetProjectilePosition());
 				timeStart = Time.time;
 			
 				//Reset numbers
