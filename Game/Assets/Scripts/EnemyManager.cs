@@ -80,6 +80,7 @@ public class EnemyManager : MonoBehaviour {
 			enemyType = (GameObject)Instantiate(waterEnemy, pos, Quaternion.identity);
 		}
 
+		this.anim = GetComponentInChildren<Animator>();
 		damageHash = Animator.StringToHash("Damage");		
 		enemyType.transform.parent = enemy;
 		enemy.localScale = new Vector3(1.5f, 1.5f, 1.5f);
